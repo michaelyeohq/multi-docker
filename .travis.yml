@@ -5,19 +5,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t michaelyeo/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mikyeo/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true michaelyeo/react-test npm test -- --coverage
+  - docker run -e CI=true mikyeo/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t michaelyeo/multi-client ./client 
-  - docker build -t michaelyeo/multi-nginx ./nginx
-  - docker build -t michaelyeo/multi-server ./server
-  - docker build -t michaelyeo/multi-worker ./worker
+  - docker build -t mikyeo/multi-client ./client 
+  - docker build -t mikyeo/multi-nginx ./nginx
+  - docker build -t mikyeo/multi-server ./server
+  - docker build -t mikyeo/multi-worker ./worker
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push michaelyeo/multi-client
-  - docker push michaelyeo/multi-nginx
-  - docker push michaelyeo/multi-server
-  - docker push michaelyeo/multi-worker
+  - docker push mikyeo/multi-client
+  - docker push mikyeo/multi-nginx
+  - docker push mikyeo/multi-server
+  - docker push mikyeo/multi-worker
