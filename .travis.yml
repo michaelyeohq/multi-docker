@@ -1,4 +1,6 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
@@ -12,7 +14,7 @@ after_success:
   - docker build -t michaelyeo/multi-client ./client 
   - docker build -t michaelyeo/multi-nginx ./nginx
   - docker build -t michaelyeo/multi-server ./server
-  - docekr build -t michaelyeo/multi-worker ./worker
+  - docker build -t michaelyeo/multi-worker ./worker
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push michaelyeo/multi-client
